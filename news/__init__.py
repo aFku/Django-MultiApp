@@ -1,1 +1,0 @@
-from .news_interia import Interia

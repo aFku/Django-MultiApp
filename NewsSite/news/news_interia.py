@@ -80,7 +80,7 @@ class Interia(News):
             content[line.a.get("title")] = line.a.get('href')
         return content
 
-    def get_huge_sport(self):
+    def __get_huge_sport(self):
         container = self.soup.find("div", {"class": "sport-right"})
         container = container.find_all("div")
         # (Title, article url, img url)
@@ -88,5 +88,16 @@ class Interia(News):
         for line in container:
             content.append((line.a.get_text(), line.a.get('href'), line.a.img.get('data-src')))
         return content
-    
+
+    def send_news(self):
+        return (self.__get_small_news(),
+                self.__get_small_news_img(),
+                self.__get_small_news_photos(),
+                self.__get_huge_news(),
+                self.__get_business_img(),
+                self.__get_business_small(),
+                self.__get_sport_small_photo(),
+                self.__get_sport_small(),
+                self.__get_huge_sport())
+
 

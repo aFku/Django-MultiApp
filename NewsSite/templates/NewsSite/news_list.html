@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p> interia </p>
+<br>
+<br>
+{% for title, link in content_interia_small_news.items %}
+    <a href={{link}}>{{title}}</a>
+    <br>
+{% endfor %}
+
+<br><br>
+{% for title, link, img in content_interia_small_news_photos %}
+    <img src={{img}}>
+    <a href={{link}}>{{title}}</a>
+    <br>
+{% endfor %}
+
+</body>
+</html>
