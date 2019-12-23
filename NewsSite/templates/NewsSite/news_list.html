@@ -1,24 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>NewsSite</title>
+    <link rel="stylesheet" href="{% static 'css/NewsSite.css' %}">
 </head>
-<body>
-<p> interia </p>
-<br>
-<br>
-{% for title, link in content_interia_small_news.items %}
-    <a href={{link}}>{{title}}</a>
+    <div>
+        <h1 style="font-family:verdana;text-align:center;">NewsSite</h1>
+        <h3 style="font-family:courier;text-align:center;"><i>All your favourite news in one place</i></h3>
+        <br><br>
+        <h2 style="text-align:center; font-size: 180%;"><a href="https://interia.pl/" style="text-decoration:none;color:black;"> Interia </a></h2>
+    </div>
     <br>
-{% endfor %}
+    <div style="clear: both; border-top: 1px solid black;">
+        <div style="float: left; width: 50%;">
+            <h2 style="text-align: center;">Fakty</h2>
+            <ul>
+                {% for title, link in content_interia_small_news.items %}
+                    <li><a href={{link}} class="link_only">{{title}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="float: right; width: 49.6%; border-left: thick solid black;">
+            {% for title, link, img in content_interia_small_news_photos %}
+                <a href={{link}} class="link_img"><img src={{img}}> {{title}} </a>
+                <br>
+            {% endfor %}
+        </div>
+    </div>
 
-<br><br>
-{% for title, link, img in content_interia_small_news_photos %}
-    <img src={{img}}>
-    <a href={{link}}>{{title}}</a>
-    <br>
-{% endfor %}
 
 </body>
 </html>

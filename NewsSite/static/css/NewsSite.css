@@ -1,0 +1,29 @@
+a.link_img {
+    text-decoration: none;
+    color: black;
+    font-family: Arial;
+    font-size: 150%;
+}
+
+a.link_only {
+    text-decoration: none;
+    color: black;
+    font-family: Times New Roman;
+    font-size: 120%;
+
+}
+
+a.link_only:hover {
+    color: grey;
+    text-decoration: underline;
+}
+
+a.link_img:hover {
+    color: grey;
+    text-decoration: underline;
+}
+
+img {
+    vertical-align: middle;
+    padding: 5px 5px;
+}
