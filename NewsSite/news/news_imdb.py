@@ -14,7 +14,7 @@ class IMDB(News):
         content = {}
         for article in container:
             content[article.header.h2.a.get_text()] = url + article.footer.a.get('href')
-        return
+        return content
 
     def send_news(self):
         return self.__get_news()

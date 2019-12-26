@@ -1,35 +1,96 @@
 <!DOCTYPE html>
 {% load static %}
-<lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>NewsSite</title>
     <link rel="stylesheet" href="{% static 'css/NewsSite.css' %}">
 </head>
+<body>
     <div>
         <h1 style="font-family:verdana;text-align:center;">NewsSite</h1>
         <h3 style="font-family:courier;text-align:center;"><i>All your favourite news in one place</i></h3>
         <br><br>
-        <h2 style="text-align:center; font-size: 180%;"><a href="https://interia.pl/" style="text-decoration:none;color:black;"> Interia </a></h2>
+        <h2 style="text-align:center; font-size: 180%;"><a href="https://interia.pl/" style="text-decoration:none;color:blue;"> Interia </a></h2>
     </div>
     <br>
     <div style="clear: both; border-top: 1px solid black;">
-        <div style="float: left; width: 50%;">
+        <div style="float: left; width: 50%; height: 100%;">
             <h2 style="text-align: center;">Fakty</h2>
+            {%  with title=content_interia_small_news_img.0 link=content_interia_small_news_img.1 img=content_interia_small_news_img.2 %}
+                <a href={{link}} class="link_only"><img src={{img}} style="height:50px;width:100;"> {{title}} </a>
+                <br>
+            {% endwith %}
             <ul>
                 {% for title, link in content_interia_small_news.items %}
                     <li><a href={{link}} class="link_only">{{title}}</a></li>
                 {% endfor %}
             </ul>
         </div>
-        <div style="float: right; width: 49.6%; border-left: thick solid black;">
+        <div style="float: right; width: 49.6%; border-left: thick solid black; height: 100%;">
             {% for title, link, img in content_interia_small_news_photos %}
                 <a href={{link}} class="link_img"><img src={{img}}> {{title}} </a>
                 <br>
             {% endfor %}
         </div>
     </div>
-
+    <div style="clear: both;">
+        {% for title, link, img in content_interia_huge_news %}
+            <a href={{link}} class="link_img"><img src={{img}}>{{title}}</a>
+            <br>
+        {% endfor %}
+        <hr>
+    </div>
+    <div style="clear: both;">
+        <h2 style="text-align: center;"> Biznes </h2>
+        {%  with title=content_interia_business_img.0 link=content_interia_business_img.1 img=content_interia_business_img.2 %}
+            <a href={{link}} class="link_only"><img src={{img}} style="height:50px;width:100;"> {{title}} </a>
+            <br>
+        {% endwith %}
+        <ul>
+         {% for title, link in content_interia_business_small.items %}
+        <li><a href={{link}} class="link_only">{{title}}</a></li>
+        {% endfor %}
+        </ul>
+        <hr>
+    </div>
+    <div style="clear: both;">
+        <h2 style="text-align: center;"> Sport </h2>
+        {%  with title=content_interia_sport_small_photo.0 link=content_interia_sport_small_photo.1 img=content_interia_sport_small_photo.2 %}
+            <a href={{link}} class="link_only"><img src={{img}} style="height:50px;width:100;"> {{title}} </a>
+            <br>
+        {% endwith %}
+        <ul>
+         {% for title, link in content_interia_sport_small.items %}
+        <li><a href={{link}} class="link_only">{{title}}</a></li>
+        {% endfor %}
+        </ul>
+        {% for title, link, img in content_interia_huge_sport %}
+            <a href={{link}} class="link_img"><img src={{img}}>{{title}}</a>
+            <br>
+        {% endfor %}
+        <hr>
+    </div>
+    <div style="clear: both;">
+         <h2 style="text-align:center; font-size: 180%;"><a href="https://www.cdaction.pl/" style="text-decoration:none;color:red;"> CD-Action </a></h2>
+    </div>
+    <div style="clear: both;">
+         {% for title, link, img in content_cda %}
+            <a href={{link}} class="link_img"><img src={{img}}>{{title}}</a>
+            <br>
+        {% endfor %}
+        <hr>
+    </div>
+        <div style="clear: both;">
+         <h2 style="text-align:center; font-size: 180%;"><a href="https://www.imdb.com/news/movie" style="text-decoration:none;color:green;"> IMDb-Movie </a></h2>
+    </div>
+    <div style="clear: both;">
+        <ul>
+         {% for title, link in content_imdb.items %}
+            <li><a href={{link}} class="link_img"><img src={{img}}>{{title}}</a></li>
+        {% endfor %}
+            </ul>
+    </div>
 
 </body>
 </html>
