@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+
+{% for event in events %}
+    <p>{{event.title}}</p>
+    <p>{{event.desc}}</p>
+    <p>{{event.eventype}}</p>
+    <p>{{event.time}}</p>
+{% endfor %}
+
+</body>
+</html>

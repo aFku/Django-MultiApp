@@ -18,5 +18,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('NewsSite.urls'))
+    path('News/', include('NewsSite.urls')),
+    path('organizer/', include('organizer.urls')),
 ]
+
+# need default site
