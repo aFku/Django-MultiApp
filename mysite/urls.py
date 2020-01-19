@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('News/', include('NewsSite.urls')),
     path('organizer/', include('organizer.urls')),
+    path('QuestionSite/', include('QuestionSite.urls')),
 ]
 
 # need default site

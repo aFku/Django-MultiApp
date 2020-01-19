@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for question in latest_questions %}
+        <h1>{{question.question_text}}</h1>
+        <br>
+        <p>{{question.question_description}}</p>
+        <br>
+        <a href="{% url 'detail' question.id %}"> CLICK! </a>
+        <br><br>
+    {% endfor %}
+</body>
+</html>
