@@ -6,7 +6,7 @@ from django.utils import timezone
 class Question(models.Model):
     title = models.TextField(max_length=100, default=" ")
     description = models.TextField(max_length=255, default=" ")
-    pub_date = models.DateTimeField(default=datetime.datetime.now())
+    pub_date = models.DateTimeField(default=timezone.now)
     create_date = datetime.datetime.now()
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE, default=None)
 
@@ -18,3 +18,28 @@ class Question(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Answer(models.Model):
+    related_question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer_text = models.TextField(max_length=100, default="")
+    votes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.answer_text
+
+
+class CommentSchema(models.Model):
+    text = models.TextField(max_length=100, default="")
+    likes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.text
+
+
+class MainComment(CommentSchema):
+    related_question = models.ForeignKey(Question, on_delete=models.CASCADE)
+
+
+class SubComment(CommentSchema):
+    related_comment = models.ForeignKey(MainComment, on_delete=models.CASCADE)
