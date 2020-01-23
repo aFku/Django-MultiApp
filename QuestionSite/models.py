@@ -29,17 +29,18 @@ class Answer(models.Model):
         return self.answer_text
 
 
-class CommentSchema(models.Model):
-    text = models.TextField(max_length=100, default="")
+class CommentInterface(models.Model):
+    text = models.TextField(max_length=100, default=" ")
     likes = models.IntegerField(default=0)
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.text
 
 
-class MainComment(CommentSchema):
+class MainComment(CommentInterface):
     related_question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
 
-class SubComment(CommentSchema):
+class SubComment(CommentInterface):
     related_comment = models.ForeignKey(MainComment, on_delete=models.CASCADE)
