@@ -122,7 +122,11 @@ class MainCommentModelTest(TestCase, QuestionManipulationMethods, CommentManipul
         main_comment = self.create_comment_to_question(text="Test Comment", author=comment_auth, question=question)
         self.assertEqual(question.maincomment_set.all()[0].text, 'Test Comment')
 
-class SubCommentModelTest(TestCase):
-    pass
+class SubCommentModelTest(TestCase, CommentManipulationMethods, UserManipulationMethods, QuestionManipulationMethods):
 
+     def test_if_subcomment_created(self):
+         """
+         Method will create question and main comment.Then will add subcomment to previous main comment.
+         """
 
+        pass
