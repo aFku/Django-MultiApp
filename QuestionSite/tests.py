@@ -122,11 +122,32 @@ class MainCommentModelTest(TestCase, QuestionManipulationMethods, CommentManipul
         main_comment = self.create_comment_to_question(text="Test Comment", author=comment_auth, question=question)
         self.assertEqual(question.maincomment_set.all()[0].text, 'Test Comment')
 
-class SubCommentModelTest(TestCase, CommentManipulationMethods, UserManipulationMethods, QuestionManipulationMethods):
+
+class SubCommentModelTest(TestCase, CommentManipulationMethods, QuestionManipulationMethods):
 
      def test_if_subcomment_created(self):
-         """
-         Method will create question and main comment.Then will add subcomment to previous main comment.
-         """
+        """
+        Method will create question and main comment.Then will add subcomment to previous main comment.
+        At the end it will check if subcomment was created via related objects of main comment
+        """
+        question = self.create_question_with_author(title="Test", desc="text", pub_date=timezone.now(),
+                                                     username='Test_user')
+        comment_auth = self.create_user('comment')
+        main_comment = self.create_comment_to_question(text="Test Comment", author=comment_auth, question=question)
+        self.assertEquals(len(question.maincomment_set.all()[0].subcomment_set.all()), 0)
+        subcomment_auth = self.create_user('subcomment')
+        subcomment = self.create_subcomment(text="sub", author=subcomment_auth, comment=main_comment)
+        self.assertEquals(len(question.maincomment_set.all()[0].subcomment_set.all()), 1)
 
-        pass
+     def test_if_subcomment_text_correct(self):
+        """
+        Method will create question and main comment.Then will add subcomment to previous main comment.
+        At the end it will check if subcomment has a correct text via related objects of main comment
+        """
+        question = self.create_question_with_author(title="Test", desc="text", pub_date=timezone.now(),
+                                                     username='Test_user')
+        comment_auth = self.create_user('comment')
+        main_comment = self.create_comment_to_question(text="Test Comment", author=comment_auth, question=question)
+        subcomment_auth = self.create_user('subcomment')
+        subcomment = self.create_subcomment(text="sub", author=subcomment_auth, comment=main_comment)
+        self.assertEquals(question.maincomment_set.all()[0].subcomment_set.all()[0].text, 'sub')
